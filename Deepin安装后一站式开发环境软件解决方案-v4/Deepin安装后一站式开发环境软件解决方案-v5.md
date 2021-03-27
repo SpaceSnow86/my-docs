@@ -273,6 +273,41 @@ Password:
    127.0.0.1:6379> exit
    ```
 
+### 安装完成后的权限问题
+
+Redis安装完成后，当前用户是没有权限的。若现在使用命令，会出现一下错误：
+
+```bash
+Got permission denied while trying to connect to the Docker daemon socket atunix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/json: dial unix /var/run/docker.sock: connect: permission denied
+```
+
+这时，我们需要将当前系统用户添加到docker用户组下即可：
+
+1. 新建docker用户组（默认新建完成）
+
+   ```bash
+   sudo groupadd docker
+   ```
+
+2. 将当前用户添加到docker用户组中
+
+   ```bash
+   sudo gpasswd -a ihch17 docker
+   ```
+
+3. 刷新用户组
+
+   ```bash
+   newgrp docker
+   ```
+
+4. 刷新后，再次使用docker命令，即可正常使用
+
+   ```bash
+   docker ps
+   CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+   ```
+
 # 关于启动器中没有图标的问题
 
 某些诸如idea等软件，在下载jar并解压后，可以直接运行。但是起动器中并没有相应的图标可以快捷的起动。
