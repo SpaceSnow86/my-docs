@@ -118,6 +118,21 @@ Password:
    Default locale: zh_CN, platform encoding: UTF-8
    OS name: "linux", version: "5.8.14-amd64-desktop", arch: "amd64", family: "unix"
    ```
+   
+5. 设置国内镜像源
+
+   修改maven文件夹下/config/settings.xml，在mirrors标签中添加以下内容
+
+   ```xml
+   <mirror>  
+       <id>nexus-aliyun</id>  
+       <mirrorOf>central</mirrorOf>    
+       <name>Nexus aliyun</name>  
+       <url>http://maven.aliyun.com/nexus/content/groups/public</url>  
+   </mirror> 
+   ```
+
+   
 
 ## MySQL
 
@@ -241,20 +256,6 @@ Password:
       systemctl restart docker
       ```
 
-   4. 设置国内镜像源
-
-      修改maven文件夹下/config/settings.xml，在mirrors标签中添加以下内容
-
-      ```xml
-      <mirror>  
-          <id>nexus-aliyun</id>  
-          <mirrorOf>central</mirrorOf>    
-          <name>Nexus aliyun</name>  
-          <url>http://maven.aliyun.com/nexus/content/groups/public</url>  
-      </mirror> 
-      ```
-
-      
 
 ## Redis
 
@@ -386,5 +387,3 @@ live系统内包含多种系统工具，我们备份/恢复系统需要用到的
    ```shell
    sudo update-grub2
    ```
-
-6. 完成后重新启动，则看到
